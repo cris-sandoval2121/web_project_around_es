@@ -26,6 +26,18 @@ const initialCards = [
 ];
 
 // -----------------------------
+//  MODALES REUTILIZABLES
+// -----------------------------
+
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("popup_is-opened");
+}
+
+// -----------------------------
 //  POPUP EDITAR PERFIL
 // -----------------------------
 
@@ -40,14 +52,6 @@ const nameInput = editPopup.querySelector(".popup__input_type_name");
 const descriptionInput = editPopup.querySelector(".popup__input_type_description");
 
 const profileForm = document.querySelector("#edit-profile-form");
-
-function openModal(modal) {
-  modal.classList.add("popup_is-opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("popup_is-opened");
-}
 
 function fillProfileForm() {
   nameInput.value = profileName.textContent;
@@ -75,6 +79,41 @@ editPopupCloseButton.addEventListener("click", () => {
 });
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+// -----------------------------
+//  POPUP AGREGAR TARJETA (PASO 2)
+// -----------------------------
+
+const addCardButton = document.querySelector(".profile__add-button");
+const newCardPopup = document.querySelector("#new-card-popup");
+const newCardPopupCloseButton = newCardPopup.querySelector(".popup__close");
+
+const newCardForm = document.querySelector("#new-card-form");
+const cardNameInput = newCardPopup.querySelector(".popup__input_type_card-name");
+const cardLinkInput = newCardPopup.querySelector(".popup__input_type_url");
+
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const name = cardNameInput.value;
+  const link = cardLinkInput.value;
+
+  // Crear tarjeta nueva como primera
+  renderCard({ name, link }, cardsList);
+
+  closeModal(newCardPopup);
+  newCardForm.reset();
+}
+
+addCardButton.addEventListener("click", () => {
+  openModal(newCardPopup);
+});
+
+newCardPopupCloseButton.addEventListener("click", () => {
+  closeModal(newCardPopup);
+});
+
+newCardForm.addEventListener("submit", handleCardFormSubmit);
 
 // -----------------------------
 //  POPUP IMAGEN (ABRIR/CERRAR)
