@@ -157,3 +157,38 @@
     padding: 0;
   }
 }
+
+/* ==========================================================================
+   ESTILOS DE VALIDACIÓN
+   ========================================================================== */
+
+/* Input con error (borde rojo) */
+.popup__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+/* Texto del error */
+.popup__error {
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 5px;
+  display: block;
+  opacity: 0; /* Invisible por defecto */
+  transition: opacity 0.3s ease;
+  min-height: 15px; /* Evita saltos de diseño */
+}
+
+/* Mostrar error */
+.popup__error_visible {
+  opacity: 1;
+}
+
+/* Botón desactivado */
+.popup__button_disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: default;
+  pointer-events: none; /* No permite clics */
+}
