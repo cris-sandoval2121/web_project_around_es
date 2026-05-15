@@ -136,6 +136,48 @@
         </div>
       </div>
 
+      <div class="popup" id="avatar-popup">
+        <div class="popup__content">
+          <button
+            aria-label="Cerrar ventana emergente"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">Cambiar foto de perfil</h3>
+          <form class="popup__form" id="avatar-form" novalidate>
+            <input
+              id="avatar-url"
+              class="popup__input popup__input_type_url"
+              name="avatar"
+              placeholder="Enlace a la foto"
+              required
+              type="url"
+            />
+            <span class="popup__error" id="avatar-url-error"></span>
+
+            <button class="button popup__button" type="submit">
+              Guardar
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="delete-popup">
+        <div class="popup__content">
+          <button
+            aria-label="Cerrar ventana emergente"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">¿Estás seguro?</h3>
+          <form class="popup__form" id="delete-form" novalidate>
+            <button class="button popup__button" type="submit">
+              Sí
+            </button>
+          </form>
+        </div>
+      </div>
+
       <template id="card-template">
         <li class="card">
           <img class="card__image" src="" alt="" />
