@@ -1,24 +1,12 @@
-// PopupWithForm.js
+// PopupWithConfirmation.js
 import Popup from "./Popup.js";
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".popup__form");
-    this._inputList = this._form.querySelectorAll(".popup__input");
     this._submitButton = this._form.querySelector(".popup__button");
-    this._originalButtonText = this._submitButton.textContent;
-  }
-
-  _getInputValues() {
-    const inputValues = {};
-
-    this._inputList.forEach((input) => {
-      inputValues[input.name] = input.value;
-    });
-
-    return inputValues;
   }
 
   setEventListeners() {
@@ -26,23 +14,22 @@ export default class PopupWithForm extends Popup {
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+      this._handleFormSubmit();
     });
   }
 
   setButtonLoading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = "Guardando...";
+      this._submitButton.textContent = "Eliminando...";
       this._submitButton.disabled = true;
     } else {
-      this._submitButton.textContent = this._originalButtonText;
+      this._submitButton.textContent = "Sí";
       this._submitButton.disabled = false;
     }
   }
 
   close() {
-    this._form.reset();
-    this.setButtonLoading(false);
     super.close();
+    this.setButtonLoading(false);
   }
 }
